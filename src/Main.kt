@@ -14,14 +14,15 @@ fun <T> List<T>.getTail(): List<T> {
     return subList(1,size)
 }
 // zadanie 2
-fun <A> isSorted(aa:List<A>, order:(A,A) -> Boolean) : Boolean {
-    for (i in 0 util aa.size-1){
-        if(!order(aa[i], aa[i+1])){
+fun <A> isSorted(aa: List<A>, order: (A, A) -> Boolean): Boolean {
+    for (i in 0 until aa.size - 1) {
+        if (!order(aa[i], aa[i + 1])) {
             return false
         }
     }
     return true
 }
+
 
 fun main() {
     // zadanie 1 sprawdzenie
