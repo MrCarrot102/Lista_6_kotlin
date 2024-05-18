@@ -62,28 +62,34 @@ fun <A> dropWhile(l:List<A>, f:(A) -> Boolean):List<A>{
 }
 fun main() {
     // zadanie 1 sprawdzenie
+    println("Zadanie 1: ")
     val mojaLista=listOf(1,2,3,4,5)
     println(mojaLista.getHead()) // zwraca 1
     println(mojaLista.getTail()) // zwracanie 2,3,4,5 bez 1
 
     // zadanie 2 sprawdzanie
+    println("Zadanie 2:")
     println(isSorted(listOf(1,2,3,4), {i:Int, j:Int ->i <j }))//true
     println(isSorted(listOf(1,1,1,1), {i:Int, j:Int->i==j }))//true
     print(isSorted(listOf("ahyyhh", "bkjn", "cnn", "duu"), {i:String, j:String->i.first()<j.first()}))// true
 
     // zdanie 3 sprawdzenie
+    println("Zadanie 3:")
     val result = square(listOf(1,2,3.5,5,-5,1,1))
     println(result)
 
     // zadanie 4 sprawdzenie
+    println("Zadanie 4:")
     val result_4=tailToHead(listOf(1,2,3))
     println(result_4)
 
     // zadanie 5 sprawdzenie
+    println("Zadanie 5:")
     val result_5=setHead(listOf(1,2,3), 5 )
     println(result_5)
 
     // zadanie 6 sprawddznie
+    println("Zadanie 6:")
     val result_6=dropWhile(listOf(1,2,3,4,4,2,1,9)) {it < 3 }
     println(result_6)
 }
