@@ -23,28 +23,43 @@ fun <A> isSorted(aa: List<A>, order: (A, A) -> Boolean): Boolean {
     return true
 }
 // zadanie 3
-fun square(numbers: List<Number>): List<Number>{
+fun square(numbers: List<Number>): List<Number> {
     val result = mutableListOf<Number>()
-    for(i in numbers.indices) {
-        if(i%2 != 0 && numbers[i] is Double && numbers[i].toDouble() > 0 ){
-            result.add(numbers[i].toDouble() * numbers[i].toDouble())
-        } else if (i%2 != 0 && numbers[i] is Int && numbers[i].toInt() > 0 ) {
-
-        result.add(numbers[i].toInt() * numbers[i].toInt())}
+    for ((index, value) in numbers.withIndex()) {
+        if (index % 2 != 0 && value.toDouble() > 0) {
+            result.add(value.toDouble() * value.toDouble())
+        }
     }
     return result
 }
+
 // zadanie 4
-fun <A> tailToHead(lst:List<A>):List<A>{
+fun <A> tailToHead(lst:List<A>): List<A> {
     if(lst.isEmpty()){
-        throw IllegalArgumentException("Lista jest pusta")
+        throw IllegalStateException("Lista jest pusta")
     }
-    val lastElement=lst.last()
-    val modifiedList=lst.dropLast(1)
-    return listOf(lastElement)+modifiedList
+    val tail =lst.dropLast(1)
+    val head=lst.last()
+    return listOf(head)+tail
 }
 
+// zadanie 5
+fun <A> setHead(lst:List<A>, item: A): List<A>{
+    if(lst.isEmpty()){
+        throw IllegalStateException("Lista jest pusta")
+    }
+    return listOf(item)+lst.drop(1)
+}
 
+// zadanie 6
+fun <A> dropWhile(l:List<A>, f:(A) -> Boolean):List<A>{
+    val index = l.indexOfFirst{!f(it)}
+    return if(index==-1){
+        emptyList()
+    } else {
+        l.drop(index)
+    }
+}
 fun main() {
     // zadanie 1 sprawdzenie
     val mojaLista=listOf(1,2,3,4,5)
@@ -55,16 +70,20 @@ fun main() {
     println(isSorted(listOf(1,2,3,4), {i:Int, j:Int ->i <j }))//true
     println(isSorted(listOf(1,1,1,1), {i:Int, j:Int->i==j }))//true
     print(isSorted(listOf("ahyyhh", "bkjn", "cnn", "duu"), {i:String, j:String->i.first()<j.first()}))// true
-    println("\n")
 
-    // zadanie 3 sprawdzanie
-    val result = square(listOf(1,2,3.5,5,-6,1,1))
+    // zdanie 3 sprawdzenie
+    val result = square(listOf(1,2,3.5,5,-5,1,1))
     println(result)
 
-    // zadanie 4 sprawdzanie
-    val result_2=tailToHead(listOf(1,2,3))
-    println(result_2)
+    // zadanie 4 sprawdzenie
+    val result_4=tailToHead(listOf(1,2,3))
+    println(result_4)
 
+    // zadanie 5 sprawdzenie
+    val result_5=setHead(listOf(1,2,3), 5 )
+    println(result_5)
 
-
+    // zadanie 6 sprawddznie
+    val result_6=dropWhile(listOf(1,2,3,4,4,2,1,9)) {it < 3 }
+    println(result_6)
 }
